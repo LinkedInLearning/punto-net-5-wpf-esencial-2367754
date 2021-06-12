@@ -1,0 +1,69 @@
+﻿<Window x:Class="Wisdom.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Wisdom" 
+        xmlns:models="clr-namespace:Wisdom.Models" 
+        xmlns:converters="clr-namespace:Wisdom.Converters"
+        xmlns:fakes="clr-namespace:Wisdom.Fakes"
+        mc:Ignorable="d"
+        Title="Wisdom Pet Medicine" Height="450" Width="800">
+
+    <Window.DataContext>
+        <models:DataSource />
+    </Window.DataContext>
+
+    <Window.Resources>
+        <converters:PriceConverter x:Key="PriceConverter" />
+        <converters:NameConverter x:Key="NameConverter" />
+
+        <DataTemplate x:Key="ProductDataTemplate">
+            <StackPanel>
+                <TextBlock FontFamily="Arial" FontWeight="Bold">
+                    <TextBlock.Text>
+                        <MultiBinding Converter="{StaticResource NameConverter}">
+                            <Binding Path="Name" />
+                            <Binding Path="Brand" />
+                        </MultiBinding>
+                    </TextBlock.Text>
+                </TextBlock>
+                <TextBlock Text="{Binding Description, TargetNullValue='Sin descripción'}" />
+                <TextBlock Text="{Binding Price, StringFormat='C'}"
+                           Foreground="{Binding Price, Converter={StaticResource PriceConverter}}"
+                           />
+            </StackPanel>
+        </DataTemplate>
+    </Window.Resources>
+    
+    <Grid Background="LightYellow"
+          d:DataContext="{d:DesignInstance Type=fakes:FakeDataSource, IsDesignTimeCreatable=True}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <Grid Margin="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Text="{Binding Products.Count, 
+                FallbackValue='Haz clic en el botón para agregar un producto',
+                StringFormat='Lista de productos ({0})'}" FontSize="20" />
+            
+            <Button Grid.Column="1"
+                    Content="Agregar"
+                    Command="{Binding AddProductCommand}" />
+        </Grid>
+
+        <Grid Grid.Row="1"
+              Background="White">
+            
+            <ListBox 
+                ItemsSource="{Binding Products}" 
+                     ItemTemplate="{StaticResource ProductDataTemplate}" />
+        </Grid>
+    </Grid>
+</Window>
