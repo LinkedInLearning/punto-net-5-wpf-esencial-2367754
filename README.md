@@ -12,10 +12,10 @@ Construye aplicaciones de escritorio empresariales con WPF (Windows Presentation
 
 _Solutions Architect. Microsoft RD y MVP_
 
-Revisa mis cursos en [LinkedIn Learning](https://www.linkedin.com/learning/instructors/rodrigo-diaz-concha?u=104).
+Revisa mis cursos en [LinkedIn Learning](https://www.linkedin.com/learning/instructors/rodrigo-diaz-concha).
 
 
 [0]: # (Replace these placeholder URLs with actual course URLs)
 
 [lil-course-url]: https://www.linkedin.com/learning/dot-net-5-aplicaciones-de-escritorio-con-wpf-esencial
-[lil-thumbnail-url]: https://media-exp1.licdn.com/dms/image/C4D0DAQGus6dDflFgxg/learning-public-crop_675_1200/0/1629799031601?e=1646956800&v=beta&t=49MXYaUzQ90gq4vIT1txKLoBCue-MqBudhdE7oqL6mM
+[lil-thumbnail-url]: https://cdn.lynda.com/course/2367754/2367754-1629799009506-16x9.jpg
